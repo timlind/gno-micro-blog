@@ -32,7 +32,7 @@ func (blog *Blog) RenderHome() string {
 	blog.profiles.Iterate("","", func(n *avl.Node) bool {
 		profile, _ := n.Value().(*Profile)
 
-		output += "* " + profile.Name + "\n"
+		output += "* [" + profile.Name + "](/r/demo/mblog:profile/" + profile.Owner + ")\n"
 
 		return false
 	})
@@ -49,7 +49,7 @@ func (blog *Blog) RenderProfile(address string) string {
 
 	output := "# " + profile.Name + "\n"
 	output += profile.Bio + "\n"
-	output += profile.Href + "["+profile.Href+"]\n\n"
+	output += "[" + profile.Href +"](" + profile.Href+")\n\n"
 
 	blog.posts.Iterate(std.GetOrigCaller().String(), "", func(n *avl.Node) bool {
 		post, _ := n.Value().(*Post)
